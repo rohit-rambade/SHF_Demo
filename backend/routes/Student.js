@@ -1,10 +1,9 @@
 const express = require('express');
-const mongoose = require('mongoose');
-
 const router = express.Router();
 
-const { createStudent } = require('../controller/Student')
+const { createStudent, login } = require('../controller/Student');
+const { authenticateStudent } = require('../middleware/Student');
 
 router.post('/student/signup', createStudent)
-
+router.post("/student/login", authenticateStudent, login);
 module.exports = router
