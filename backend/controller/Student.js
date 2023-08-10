@@ -1,8 +1,11 @@
 const { studentSecret } = require('../middleware/Student');
 const jwt = require("jsonwebtoken");
-const Student = require('../model/Student')
+const { Student, validate } = require('../model/Student')
 exports.createStudent = async (req, res) => {
+    const { error } = validate(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
     const { username } = req.body;
+
     const studentExists = await Student.findOne({ username })
     console.log(studentExists);
     if (studentExists) {
