@@ -1,6 +1,8 @@
-const Renter = require('../model/Renter');
+const { Renter, validate } = require('../model/Renter');
 
 exports.createRenter = async (req, res) => {
+    const { error } = validate(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
     const { username } = req.body;
     const renterExists = await Renter.findOne({ username });
     if (renterExists) {
