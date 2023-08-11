@@ -14,7 +14,7 @@ exports.createStudent = async (req, res) => {
         const newStudent = new Student(req.body)
         await newStudent.save();
         const token = jwt.sign({ username, role: "student" }, studentSecret);
-        res.json({ message: "User created successfully", token });
+        res.json({ message: "Student created successfully", token });
     }
 
 }

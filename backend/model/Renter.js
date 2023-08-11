@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const renterSchema = mongoose.Schema({
+const renterSchema = new mongoose.Schema({
     firstname: { type: String, required: true, minlength: 5, maxlength: 50 },
     lastname: { type: String, required: true, minlength: 5, maxlength: 50 },
     username: { type: String, required: true, minlength: 5, maxlength: 50, unique: true },
